@@ -23,6 +23,8 @@ export const requireToken = (req, res, next) => {
     }
 }
 
+
+
 //funcion para verificar el rol del usuario
 
 export const isUser = async (req, res, next) =>{

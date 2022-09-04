@@ -5,7 +5,6 @@ import { User } from "../models/User.js";
 export const checkEmailExisted = async (req, res, next) => {
     const email = await User.findOne({email: req.body.email})
     if (email) return res.status(404).json("el email ya existe")
-
     next();
 }
 

@@ -3,31 +3,48 @@ import bcryptjs from "bcryptjs";
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema ({
+    nombreCompleto: {
+        type: String,
+        required: true,
+        lowercase: true,
+        trim: true
+    },
+    telefono:{
+        type: String,
+        trim: true
+    },
     email:{
         type: String,
         required: true,
-        trim: true,
-        unique: true,
+        trim: true,//limpiar campos, quitar espacios
+        unique: true,//para ser el email unico
         lowercase: true,
-        index: { unique: true},
+        index: { unique: true},//genra la busqueda mas rapida para documento propio de mongo
     },
     password:{
         type: String,
         required: true
     },
+    nombreOficina:{
+        type: String,
+        required:true,
+        lowercase: true,
+        trim: true
+    },
     roles:[{
-        ref: "role",
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: "role"
     }]
 },{
-    timestamps:true
+    timestamps:true,
+    versionKey: false
 })
 
 
 //metodo para hashear la contraseña
 userSchema.pre("save", async function(next){
     const user = this
-
+    //if para cuando cambie la contraseña el usuario
     if (!user.isModified('password')) return next();
 
    try {
