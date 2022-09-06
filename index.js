@@ -4,7 +4,8 @@ import "./database/connectdb.js";
 import authRoutes from "./routes/auth.routes.js"
 import {createRoles} from "./helpers/initialRoles.js";
 import escuelaRoutes from "./routes/escuela.routes.js";
-import userRouter from "./routes/user.routes.js"
+import userRouter from "./routes/user.routes.js";
+import schoolRouter from "./routes/school.routes.js" 
 
 const app = express();
 //iniciar los roles por defecto
@@ -17,6 +18,9 @@ app.use('/api/v1/auth', authRoutes)
 
 //TODO: RUTA DE PRUEBA PARA PROTEGER LAS RUTAS POR ROLES
 app.use('/api/v1/escuela', escuelaRoutes);
+
+//Todo: ruta para escuelas
+app.use('/api/v1/schools', schoolRouter);
 
 //TODO: RUTA PARA CREAR USUARIOS admin
 app.use('/api/v1', userRouter);

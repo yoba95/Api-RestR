@@ -9,12 +9,12 @@ export const requireToken = (req, res, next) => {
 
         if(!token)
             throw new Error("No Existe El Token En El Header Usa Bearer");
-        
         token = token.split(" ")[1];
         const {uid} = jwt.verify(token, process.env.JWT_SECRET);
        // console.log(payload);
         req.uid = uid;
         next();
+
     } catch (error) {
         console.log(error);
         return res

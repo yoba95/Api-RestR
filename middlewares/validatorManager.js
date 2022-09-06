@@ -21,7 +21,7 @@ export const bodyRegisterValidator = [
 export const bodyLoginValidator = [
     body("email","Formato Incorrecto").trim().isEmail().normalizeEmail(),
     body("password", "Minimo 6 caracteres").trim().isLength({min:6}),
-    validationResultExppress
+    validationResultExpress
 ];
 
 /*
