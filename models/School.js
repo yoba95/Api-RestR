@@ -6,116 +6,163 @@ const schoolSchema = new Schema({
         type: "String",
         required: true,
         trim:true,
-        unique: true
     },
     nombreEscuela: {
      type: "String",
-     required: true 
+     required: true,
+     uppercase: true,
+     trim: true
     },
     nivelEducativo: {
         type: "String",
-        required: true
-    },
-    claveInegi: {
-        type:"String",
-        required:true
+        required: true,
+        uppercase: true,
+        trim: true
     },
     email:{
         type: "string",
-        required: true,
         trim: true,
-        unique: true,
         lowercase: true,
         index: { unique: true},
     },
-    telefono: String,
+    telefono: {
+        type: "String",
+        trim: true
+    },
     region: {
         claveRegion:{
             type: "String",
-            required: true
+            required: true,
+            trim: true
         },
         name: {
             type: "String",
-            required: true
+            required: true,
+            uppercase: true,
+            trim: true
         } 
     },  
+    claveInegi: {
+        type:"String",
+        required:true,
+        trim: true
+    },
     municipio:{
+            claveMunicipio:{
+                type: "String",
+                required: true,
+                trim: true
+            },
             nombre: {
                 type: "String",
-                required: true
+                required: true,
+                uppercase: true,
+                trim: true
             },
     },
     localidad:{
+            claveLocalidad:{
+                type: "String",
+                required: true,
+                trim: true
+            },
             nombre:{
                 type: "String",
-                required: true
+                required: true,
+                lowercase: true,
+                trim: true
             },
             calle: {
                 type: "String",
-                required: true
+                required: true,
+                uppercase: true,
+                trim: true
             },
-            numExterior: String,
-            numInterior: String,
-            colonia: String,
+            numExterior: {
+                type: "String",
+                trim: true
+            },
+            numInterior:{
+                type: "String",
+                trim: true
+            },
+            colonia: {
+                type: "String",
+                uppercase: true
+            },
             codigoPostal: {
                 type: "String",
-                required: true
+                required: true,
+                trim: true
             },
-           // coordenadasLatitud: Number,
-          //  coordenadasLongitud: Number,
         },
+    coordenadasLatitud: Number,
+    coordenadasLongitud: Number,
     director:{
         nombre: {
             type: "String",
-            required: true
+            required: true,
+            uppercase: true,
+            trim: true
         },
         sindicato: {
             type: "String",
-            required: true
+            uppercase: true,
+            trim: true
         },
         telefono: {
             type: "String",
-            required: true
+            trim: true
         },
         puesto: {
             type: "String",
-            required: true
+            uppercase: true,
+            trim: true
         },
         email:{
             type: "string",
-            required: true,
             trim: true,
-            unique: true,
             lowercase: true,
             index: { unique: true}
         },
-       estatus: String,
-       /*
-        estatus:[{
-            type: Schema.Types.ObjectId,
-            ref: "estatu"
-        }],*/
-        programarAtencion:String
+        estatus: {
+            type: "String",
+            uppercase: true,
+            trim: true
+        },
+        programarAtencion:{
+            type: "String",
+            uppercase: true,
+            trim: true
+        }
     },
     supervisor:{
         nombre: {
             type: "String",
-            required: true
+            required: true,
+            uppercase: true,
+            trim: true
         },
         email:{
             type: "string",
-            required: true,
             trim: true,
-            unique: true,
             lowercase: true,
             index: { unique: true}
         },
          telefono: {
             type: "String",
-            required: true
+            trim: true
         },
-        viaRecuperacion: String,
-        periodoRecuperacion:String
+        viaRecuperacion: {
+            type: "String",
+            uppercase: true,
+            trim: true
+        },
+        periodoRecuperacion:{
+            type: "String",
+            uppercase: true,
+            trim: true
+        }
 
     },
     uid: {

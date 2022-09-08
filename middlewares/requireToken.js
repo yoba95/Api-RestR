@@ -8,18 +8,16 @@ export const requireToken = (req, res, next) => {
         let token = req.headers?.authorization;
 
         if(!token)
-            throw new Error("No Existe El Token En El Header Usa Bearer");
+            throw new Error("No Existe El Token");
         token = token.split(" ")[1];
         const {uid} = jwt.verify(token, process.env.JWT_SECRET);
        // console.log(payload);
-        req.uid = uid;
+        req.uid = uid; //devuelve el id del usuario que esta iniciando sesion
         next();
 
     } catch (error) {
         console.log(error);
-        return res
-       .status(401)
-       .send({ error: tokenVerificationErrors[error.message] });
+        return res.status(401).send({ error: tokenVerificationErrors[error.message] });
     }
 }
 
@@ -37,7 +35,7 @@ export const isUser = async (req, res, next) =>{
             return;
         }
     }
-    return res.status(403).json("necesitas ser User Role");
+    return res.status(403).json("Necesitas ser User Role");
 }
 export const isAdmin = async (req, res, next) =>{
     const user = await User.findById(req.uid)
@@ -49,5 +47,5 @@ export const isAdmin = async (req, res, next) =>{
             return;
         }
     }
-    return res.status(403).json("necesitas ser administrador");
+    return res.status(403).json("necesitas Ser Administrador");
 }

@@ -1,5 +1,5 @@
 import { School } from "../models/School.js";
-import { Estatu } from "../models/EstatusSchool.js";
+
 
 export const getSchool = async (req, res) => {
     try {
@@ -14,11 +14,11 @@ export const getSchool = async (req, res) => {
 }
 
 export const createSchool = async (req, res) => {
-    const{claveDeTrabajo, nombreEscuela, nivelEducativo, claveInegi, email, telefono, region, municipio, localidad, director, supervisor} = req.body;
+    const{claveDeTrabajo, nombreEscuela, nivelEducativo, claveInegi, email, telefono, region, municipio, localidad,coordenadasLatitud, coordenadasLongitud, director, supervisor} = req.body;
     
     try {
         const newSchool = new School({ 
-        claveDeTrabajo,nombreEscuela, nivelEducativo, claveInegi, email, telefono,region,municipio,localidad,director,supervisor , uid: req.uid})
+        claveDeTrabajo,nombreEscuela, nivelEducativo, claveInegi, email, telefono,region,municipio,localidad, coordenadasLatitud,coordenadasLongitud,director,supervisor , uid: req.uid})
 //console.log(newSchool);
         const schoolSaved = await newSchool.save();
         res.status(201).json({schoolSaved});

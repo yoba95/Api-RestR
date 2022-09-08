@@ -1,10 +1,13 @@
 import { Router } from "express";
+import { refreshToken } from "../controllers/auth.controller.js";
 import { createEscuela, getEscuelaById, getEscuelas, updateEscuelaById, deleteEscuelaById } from "../controllers/escuela.controller.js";
+import { requireRefreshToken } from "../middlewares/requiereRefreshToken.js";
 import { requireToken, isUser, isAdmin } from "../middlewares/requireToken.js";
 const router = Router();
 
+//router.post('/',[requireToken, isUser, isAdmin], createEscuela );
 router.post('/',[requireToken, isUser, isAdmin], createEscuela );
-router.get('/', getEscuelas);
+router.get('/',requireRefreshToken, refreshToken ,getEscuelas);
 router.get('/:id', getEscuelaById);
 router.patch('/:id', [requireToken, isUser, isAdmin], updateEscuelaById);
 router.delete('/:id', [requireToken, isAdmin], deleteEscuelaById);
